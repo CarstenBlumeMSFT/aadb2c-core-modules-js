@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-export default interface ILogger {
+export interface ILogger {
   logDebug: (message: string) => void
   logInfo: (message: string) => void
   logWarn: (message: string) => void

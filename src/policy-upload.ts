@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 import {DOMParser} from 'xmldom'
-import ILogger from './logger-interface'
+import {ILogger} from './logger-interface'
 import upath from 'upath'
 import glob from 'glob'
 import 'isomorphic-fetch'
@@ -21,7 +21,7 @@ interface PolicyInfoObj {
 }
 
 // Upload all policies entrypoint
-export default async function PolicyUpload(
+export async function PolicyUpload(
   policiesPath: string,
   authProvider: MSALClientCredentialsAuthProvider,
   logger: ILogger

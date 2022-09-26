@@ -1,11 +1,8 @@
 import {DOMParser} from 'xmldom'
 import {PolicyFile} from './policy-build'
-import ILogger from './logger-interface'
+import {ILogger} from './logger-interface'
 
-export default function RenumberPolicies(
-  files: PolicyFile[],
-  logger: ILogger
-): void {
+export function RenumberPolicies(files: PolicyFile[], logger: ILogger): void {
   const policies: Map<string, Policy> = new Map()
   for (const file of files) {
     let policy = null

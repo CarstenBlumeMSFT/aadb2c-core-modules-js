@@ -4,7 +4,7 @@ import {
   LogLevel,
   ConfidentialClientApplication
 } from '@azure/msal-node'
-import ILogger from './logger-interface'
+import {ILogger} from './logger-interface'
 // eslint-disable-next-line import/named
 import {AuthenticationProvider} from '@microsoft/microsoft-graph-client'
 import crypto from 'crypto'

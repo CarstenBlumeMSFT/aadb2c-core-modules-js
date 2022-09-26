@@ -1,10 +1,10 @@
 import fs from 'fs'
 import upath from 'upath'
-import RenumberPolicies from './renumber-steps'
-import ILogger from './logger-interface'
+import {RenumberPolicies} from './renumber-steps'
+import {ILogger} from './logger-interface'
 import glob from 'glob'
 
-export default function PolicyBuild(
+export function PolicyBuild(
   rootPath: string,
   outputFolder: string,
   renumberSteps: boolean,
