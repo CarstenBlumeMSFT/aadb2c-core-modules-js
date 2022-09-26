@@ -4,6 +4,7 @@
   "private": true,
   "description": "Shared core code for multiple GitHub Actions and Azure DevOps Pipeline tasks.",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": ["lib/**"],
   "scripts": {
     "build": "tsc",
