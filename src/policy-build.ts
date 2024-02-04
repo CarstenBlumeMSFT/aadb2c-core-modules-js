@@ -2,7 +2,7 @@ import fs from 'fs'
 import upath from 'upath'
 import {RenumberPolicies} from './renumber-steps'
 import {ILogger} from './logger-interface'
-import {globSync} from 'glob'
+import fastglob from 'fast-glob'
 
 export function PolicyBuild(
   rootPath: string,
@@ -32,14 +32,21 @@ export function PolicyBuild(
     `Searching policy files matching: ${policyFilter} ignoring ${policyIgnore}`
   )
 
-  const files = globSync(policyFilter, {ignore: policyIgnore})
+  const files = fastglob.sync(policyFilter, {ignore: [policyIgnore]})
 
   const policyFiles: PolicyFile[] = []
   for (const file of files) {
     logger.logInfo(`Found: ${file}`)
     const data = fs.readFileSync(file, 'utf8')
     policyFiles.push(
-      new PolicyFile(file, data.toString(), upath.normalize(rootPath))
+      new PolicyFile(upath.normalize(file), data.toString(), rootPath)
+    )
+  }
+
+  // Iterate through the list of settings
+  for (const file of policyFiles) {
+    logger.logInfo(
+      `Constructed File: ${file.FileName} with Subfolder: ${file.SubFolder}`
     )
   }
 
