@@ -2,7 +2,7 @@ import * as fs from 'fs'
 import {DOMParser} from 'xmldom'
 import {ILogger} from './logger-interface'
 import upath from 'upath'
-import glob from 'glob'
+import {globSync} from 'glob'
 import 'isomorphic-fetch'
 import {Client} from '@microsoft/microsoft-graph-client'
 import {MSALClientCredentialsAuthProvider} from './msal-auth'
@@ -31,7 +31,7 @@ export async function PolicyUpload(
 
   logger.startGroup(`Searching policy files matching: ${policyFilter}`)
 
-  const files = glob.sync(policyFilter)
+  const files = globSync(policyFilter)
 
   //load all policies in memory
   const policies = loadPolicies(files, logger)

@@ -2,7 +2,7 @@ import fs from 'fs'
 import upath from 'upath'
 import {RenumberPolicies} from './renumber-steps'
 import {ILogger} from './logger-interface'
-import glob from 'glob'
+import {globSync} from 'glob'
 
 export function PolicyBuild(
   rootPath: string,
@@ -32,7 +32,7 @@ export function PolicyBuild(
     `Searching policy files matching: ${policyFilter} ignoring ${policyIgnore}`
   )
 
-  const files = glob.sync(policyFilter, {ignore: policyIgnore})
+  const files = globSync(policyFilter, {ignore: policyIgnore})
 
   const policyFiles: PolicyFile[] = []
   for (const file of files) {
