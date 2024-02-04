@@ -1,5 +1,4 @@
 import {
-  // eslint-disable-next-line import/named
   Configuration,
   LogLevel,
   ConfidentialClientApplication
