@@ -43,13 +43,6 @@ export function PolicyBuild(
     )
   }
 
-  // Iterate through the list of settings
-  for (const file of policyFiles) {
-    logger.logInfo(
-      `Constructed File: ${file.FileName} with Subfolder: ${file.SubFolder}`
-    )
-  }
-
   logger.endGroup()
 
   if (renumberSteps) {
