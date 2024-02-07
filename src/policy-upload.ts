@@ -6,7 +6,6 @@ import fastglob from 'fast-glob'
 import 'isomorphic-fetch'
 import {Client} from '@microsoft/microsoft-graph-client'
 import {MSALClientCredentialsAuthProvider} from './msal-auth'
-import {Readable} from 'stream'
 
 interface IPolicy {
   policyInfo: PolicyInfoObj
@@ -57,15 +56,11 @@ export async function PolicyUpload(
 
   logger.startGroup('Uploading policy files...')
   for (const policyUpload of policyUploadQueue) {
-    const fileStream = new Readable()
-    fileStream.push(policyUpload.xmlData)
-    fileStream.push(null) // Indicates end of file/stream
-
     logger.logInfo(`Uploading ${policyUpload.policyInfo.PolicyId}...`)
     // Upload the policy
     await client
       .api(`trustFramework/policies/${policyUpload.policyInfo.PolicyId}/$value`)
-      .putStream(fileStream)
+      .put(policyUpload.xmlData)
   }
   logger.endGroup()
 }
